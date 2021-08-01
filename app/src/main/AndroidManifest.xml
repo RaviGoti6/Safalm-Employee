@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.spidertechsoft.safalmemployee">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name=".SafalmEmployee"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".LeadActivity" />
+        <activity android:name=".AddSelfLeadActivity" />
+        <activity android:name=".EditSelfLeadActivity" />
+        <activity android:name=".SelfLeadDetailActivity" />
+        <activity android:name=".CompanyLeadDetailActivity" />
+        <activity android:name=".AddSelfLeadToVisitedAndSalesActivity" />
+        <activity android:name=".AddSelfVisitedLeadToSalesActivity" />
+        <activity android:name=".AddCompanyVisitedLeadToSalesActivity" />
+        <activity android:name=".AddCompanyLeadToVisitedAndSalesActivity" />
+        <activity android:name=".CompanyVisitedLeadDetailActivity" />
+        <activity android:name=".SelfVisitedLeadDetailActivity" />
+        <activity android:name=".EditVisitedLeadActivity" />
+        <activity android:name=".SelfSalesLeadDetailActivity" />
+        <activity android:name=".CompanySalesLeadDetailActivity" />
+        <activity android:name=".TaskDetailActivity" />
+        <activity android:name=".LeadAddToTaskActivity" />
+        <activity android:name=".ChangePasswordActivity" />
+        <activity android:name=".SelfLeadListActivity" />
+        <activity
+            android:name=".ProductListActivity"
+            android:excludeFromRecents="true"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity android:name=".SelfVisitedLeadListActivity" />
+        <activity android:name=".SelfSalesLeadList" />
+        <activity android:name=".AddSelfLeadToSalesActivity" />
+        <activity
+            android:name=".LeadTaskTypeListActivity"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity android:name=".CompanyLeadListActivity" />
+        <activity android:name=".AddCompanyLeadToSalesActivity" />
+        <activity android:name=".CompanyVisitedLeadListActivity" />
+        <activity android:name=".CompanySalesLeadListActivity" />
+        <activity android:name=".EditSelfSalesLeadActivity" />
+        <activity android:name=".ProductListMainActvity" />
+        <activity android:name=".TaskListActivity" />
+        <activity android:name=".TargetListActivity" />
+        <activity android:name=".LeadTransferActivity" />
+        <activity android:name=".LeadTransferLeadDetailActivity" />
+        <activity
+            android:name=".EmployeeListActivity"
+            android:excludeFromRecents="true" />
+        <activity android:name=".LeadTransferDetailActivity" />
+        <activity android:name=".OpportunityListActivity"></activity>
+        <receiver android:name=".MyBroadcast">
+            <intent-filter>
+                <action android:name="android.media.action.DISPLAY_NOTIFICATION" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>
