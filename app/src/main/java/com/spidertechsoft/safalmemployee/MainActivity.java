@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
     AsyncTask at;
     int flag = 0;
+    private boolean tFlag;
 
     ArrayList<HashMap<String, String>> leadList;
 
@@ -200,6 +201,20 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (flag > 0) {
+            //tFlag = 0;
+            lstTask = findViewById(R.id.lstTask);
+            url = "http://10.0.2.2/safalm/get_emp_from_id.php?id=" + eid + "&cur_date=" + currentDate;
+            //Toast.makeText(MainActivity.this, "Task iddd: " + tid, Toast.LENGTH_LONG).show();
+            leadList.clear();
+            lstTask.setAdapter(null);
+            at = new MainActivity.Employee().execute();
+        }
+    }
+
     private void openSMS() {
         Uri sms_uri = Uri.parse("smsto:" + num);
         Intent sms_intent = new Intent(Intent.ACTION_SENDTO, sms_uri);
@@ -294,37 +309,36 @@ public class MainActivity extends AppCompatActivity {
             if (tid == null) {
                 Toast.makeText(MainActivity.this, "Task id: " + tid, Toast.LENGTH_SHORT).show();
             } else {
-                adptr = new SimpleAdapter(MainActivity.this, leadList, R.layout.task_list_item_dashboard, new String[]{"task_id", TAG_SLNAME, TAG_SLCONTACT, "task_type"}, new int[]{R.id.txtTLIid, R.id.txtTLIname, R.id.txtTLImobile, R.id.txtTLItasktype}) {
+                if (tFlag) {
+                    adptr = new SimpleAdapter(MainActivity.this, leadList, R.layout.task_list_item_dashboard, new String[]{"task_id", TAG_SLNAME, TAG_SLCONTACT, "task_type"}, new int[]{R.id.txtTLIid, R.id.txtTLIname, R.id.txtTLImobile, R.id.txtTLItasktype}) {
 
-                    @Override
-                    public View getView(int position, View convertView, ViewGroup parent) {
+                        @Override
+                        public View getView(int position, View convertView, ViewGroup parent) {
 
-                        View v = super.getView(position, convertView, parent);
+                            View v = super.getView(position, convertView, parent);
 
-                        TextView tasktype = v.findViewById(R.id.txtTLItasktype);
-                        ImageView img = v.findViewById(R.id.imgTLIcall);
+                            TextView tasktype = v.findViewById(R.id.txtTLItasktype);
+                            ImageView img = v.findViewById(R.id.imgTLIcall);
 
-                        if (tasktype.getText().toString().equals("Call")) {
-                            img.setImageResource(R.drawable.call);
+                            if (tasktype.getText().toString().equals("Call")) {
+                                img.setImageResource(R.drawable.call);
+                            }
+                            if (tasktype.getText().toString().equals("SMS")) {
+                                img.setImageResource(R.drawable.sms);
+                            }
+                            if (tasktype.getText().toString().equals("Mail")) {
+                                img.setImageResource(R.drawable.mail);
+                            }
+                            if (tasktype.getText().toString().equals("WhatsApp")) {
+                                img.setImageResource(R.drawable.whatsapp);
+                            }
+                            return v;
                         }
-                        if (tasktype.getText().toString().equals("SMS")) {
-                            img.setImageResource(R.drawable.sms);
-                        }
-
-                        if (tasktype.getText().toString().equals("Mail")) {
-                            img.setImageResource(R.drawable.mail);
-                        }
-
-                        if (tasktype.getText().toString().equals("WhatsApp")) {
-                            img.setImageResource(R.drawable.whatsapp);
-                        }
-                        return v;
-                    }
-                };
-                lstTask.setAdapter(adptr);
-
+                    };
+                    lstTask.setAdapter(adptr);
+                    //tFlag = 1;
+                }
             }
-
             pDialog.dismiss();
             if (flag == 0) {
                 flag++;
@@ -361,6 +375,8 @@ public class MainActivity extends AppCompatActivity {
                             Log.e("SAFALM33=", success);
                             Log.e("SAFALM44=", message);
 
+                            tFlag = false;
+
                             String emp_name = c.getString("emp_name");
 
                             HashMap<String, String> map = new HashMap<>();
@@ -378,6 +394,7 @@ public class MainActivity extends AppCompatActivity {
                             String message = jsonObj.getString("message");
                             Log.e("SAFALM3=", success);
                             Log.e("SAFALM4=", message);
+                            tFlag = true;
                             //Toast.makeText(getApplicationContext(), success + message, Toast.LENGTH_SHORT).show();
                             tid = c.getString("task_id");
                             String emp_name = c.getString("emp_name");

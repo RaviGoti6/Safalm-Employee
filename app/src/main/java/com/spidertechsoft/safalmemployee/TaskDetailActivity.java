@@ -108,8 +108,8 @@ public class TaskDetailActivity extends AppCompatActivity {
 
                 url = "http://10.0.2.2/safalm/delete_task.php?task_id=" + task_id;
                 at = new TaskDetailActivity.Employee().execute();
-                Intent i=new Intent(TaskDetailActivity.this,TaskListActivity.class);
-                startActivity(i);
+                //Intent i=new Intent(TaskDetailActivity.this,TaskListActivity.class);
+                //startActivity(i);
                 finish();
 
             }
