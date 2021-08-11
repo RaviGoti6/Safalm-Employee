@@ -3,7 +3,9 @@ package com.spidertechsoft.safalmemployee;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -111,33 +113,32 @@ public class CompanyLeadListActivity extends AppCompatActivity {
             //   String eid=se.getempId().toString();
             //    Log.e("Safalam 6:",eid);
 
-            adptr = new SimpleAdapter(CompanyLeadListActivity.this, leadList, R.layout.self_lead_list_item, new String[]{TAG_SLID, TAG_SLNAME, TAG_SLADDRESS, TAG_SLCONTACT,"s_task","s_visited","s_sales"}, new int[]{R.id.txtSLLIid, R.id.txtSLLIname, R.id.txtSLLIaddress, R.id.txtSLLImobile,R.id.s_task,R.id.s_visited,R.id.s_sales})
-            {
+            adptr = new SimpleAdapter(CompanyLeadListActivity.this, leadList, R.layout.self_lead_list_item, new String[]{TAG_SLID, TAG_SLNAME, TAG_SLADDRESS, TAG_SLCONTACT, "s_task", "s_visited", "s_sales"}, new int[]{R.id.txtSLLIid, R.id.txtSLLIname, R.id.txtSLLIaddress, R.id.txtSLLImobile, R.id.s_task, R.id.s_visited, R.id.s_sales}) {
                 @Override
                 public View getView(int position, View convertView, ViewGroup parent) {
 
                     View v = super.getView(position, convertView, parent);
 
-                    LinearLayout l_task=v.findViewById(R.id.icStatusTask);
-                    LinearLayout l_visited=v.findViewById(R.id.icStatusVisit);
-                    LinearLayout l_sales=v.findViewById(R.id.icStatusSales);
-                    TextView t_task=v.findViewById(R.id.s_task);
-                    TextView t_visited=v.findViewById(R.id.s_visited);
-                    TextView t_sales=v.findViewById(R.id.s_sales);
+                    LinearLayout l_task = v.findViewById(R.id.icStatusTask);
+                    LinearLayout l_visited = v.findViewById(R.id.icStatusVisit);
+                    LinearLayout l_sales = v.findViewById(R.id.icStatusSales);
+                    TextView t_task = v.findViewById(R.id.s_task);
+                    TextView t_visited = v.findViewById(R.id.s_visited);
+                    TextView t_sales = v.findViewById(R.id.s_sales);
                     // l_task.setBackgroundColor(Color.parseColor("#000000"));
-                    if (t_task.getText().toString().equals("T")){
+                    if (t_task.getText().toString().equals("T")) {
                         l_task.setBackground(getResources().getDrawable(R.drawable.task_status));
-                    }else{
+                    } else {
                         l_task.setBackground(getResources().getDrawable(R.drawable.status_none));
                     }
-                    if (t_visited.getText().toString().equals("V")){
+                    if (t_visited.getText().toString().equals("V")) {
                         l_visited.setBackground(getResources().getDrawable(R.drawable.visited_status));
-                    }else {
+                    } else {
                         l_visited.setBackground(getResources().getDrawable(R.drawable.status_none));
                     }
-                    if (t_sales.getText().toString().equals("S")){
+                    if (t_sales.getText().toString().equals("S")) {
                         l_sales.setBackground(getResources().getDrawable(R.drawable.sales_status));
-                    }else {
+                    } else {
                         l_sales.setBackground(getResources().getDrawable(R.drawable.status_none));
                     }
 

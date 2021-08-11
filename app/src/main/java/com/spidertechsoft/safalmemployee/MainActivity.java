@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     ListView lstTask;
     String currentDate, emp_name;
 
-    ListView list;
+    ListView list; 
 
     String empid, addr, num, email = "ravigoti6@gmail.com", tid;
     ListAdapter adptr;
